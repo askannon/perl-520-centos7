@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+exec perl ${PERL_SCRIPT_NAME}
