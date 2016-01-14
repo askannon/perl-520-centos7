@@ -1,4 +1,4 @@
-FROM openshift/perl-520-centos7
+FROM openshift/perl-516-centos7
 
 MAINTAINER Askannon <askannon@flexarc.com>
 
