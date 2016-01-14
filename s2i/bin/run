@@ -6,6 +6,8 @@ echo "Environment:"
 env | sort
 echo "------------"
 
+set -e
+
 if [ ! -f "${PERL_SCRIPT_NAME}" ]; then
   echo "Perl script file ${PERL_SCRIPT_NAME} is not a file. Either set env variable PERL_SCRIPT_NAME to the name of your script or rename your script to run.pl to automatically find it."
   exit 1
@@ -13,7 +15,12 @@ elif [ ! -r "${PERL_SCRIPT_NAME}" ]; then
   echo "Perl script file ${PERL_SCRIPT_NAME} is not readable."
   exit 1
 else
-  echo "Executing perl script file [${PERL_SCRIPT_NAME}] with arguments [${PERL_SCRIPT_ARGS}]."
-  exec perl ${PERL_SCRIPT_NAME} ${PERL_SCRIPT_ARGS}
+  if [ x"${PERL_SCRIPT_ARGS}" = x ]; then
+	echo "Executing perl script file [${PERL_SCRIPT_NAME}]."
+	perl ${PERL_SCRIPT_NAME}
+  else
+    echo "Executing perl script file [${PERL_SCRIPT_NAME}] with arguments [${PERL_SCRIPT_ARGS}]."
+    perl ${PERL_SCRIPT_NAME} ${PERL_SCRIPT_ARGS}
+  fi
 fi
 
