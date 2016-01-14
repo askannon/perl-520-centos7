@@ -1,5 +1,17 @@
 #!/bin/bash
 
-set -e
+PERL_SCRIPT_NAME=${HOME}/${PERL_SCRIPT_NAME:-run.pl}
 
-exec perl ${HOME}/${PERL_SCRIPT_NAME}
+echo "Environment:"
+env | sort
+echo "------------"
+
+if [ ! -f "${PERL_SCRIPT_NAME}" ]; then
+  echo "Perl script file ${PERL_SCRIPT_NAME} is not a file. Either set env variable PERL_SCRIPT_NAME to the name of your script or rename your script to run.pl to automatically find it."
+  exit 1
+if [ ! -r "${PERL_SCRIPT_NAME}" ]; then
+  echo "Perl script file ${PERL_SCRIPT_NAME} is not readable."
+  exit 1
+fi
+
+exec perl ${PERL_SCRIPT_NAME}
