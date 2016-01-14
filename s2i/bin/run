@@ -2,4 +2,4 @@
 
 set -e
 
-exec perl ${PERL_SCRIPT_NAME}
+exec perl ${HOME}/${PERL_SCRIPT_NAME}
