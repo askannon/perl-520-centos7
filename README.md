@@ -1,1 +1,2 @@
-# perl-520-centos7
+STI builder image to be used with OpenShift for the execution of plain Perl scripts. For the image to be able to run your srcipt you'll either need to set the name of your script in the PERL_SCRIPT_NAME env variable or simply name it "run.pl".
+If you want the builder to add CPAN modules you can add a regular "cpanfile" into the root source directory and the modules will automatically get added to the image.
